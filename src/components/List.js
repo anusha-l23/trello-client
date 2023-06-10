@@ -2,7 +2,7 @@ import "../styles/List.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-import { getCards, addCard } from "../services/taskServices";
+//import { getCards, addCard } from "../services/taskServices";
 import Card from "./Card";
 import CardEditor from "./CardEditor";
 import ListEditor from "./ListEditor";
@@ -59,29 +59,30 @@ class List extends Component {
     });
   };
 
-  async componentDidMount() {
-    //const {cards} = this.list.cards;
+//   async componentDidMount() {
+//     //const {cards} = this.list.cards;
 
-await getCards()
-      .then((res) => {
-console.log(res.data);
+// await getCards()
+//       .then((res) => {
+// console.log(res.data);
 
 
-      })
-      .catch((error) => console.log(error));
-  }
+//       })
+//       .catch((error) => console.log(error));
+//   }
 
 
   
-  handleAdd = async () => {
-    //const {cards} = this.list.cards;
+//   handleAdd = async () => {
+//     //const {cards} = this.list.cards;
 
-await addCard(this.card)
-      .then((res) => {
-        this.setState({card: this.state.card})
-      })
-      .catch((error) => console.log(error));
-  }
+// await addCard(this.card)
+//       .then((res) => {
+//         this.setState({card: this.state.card})
+//       })
+//       .catch((error) => console.log(error));
+//   }
+
   render() {
     const { list, index } = this.props;
     const { editingTitle, addingCard, title } = this.state;
