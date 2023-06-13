@@ -10,7 +10,7 @@ class App extends Component {
         <div className="Header">React Todo List App</div>
 <BrowserRouter>
 <Routes>
-  <Route path="/" element={<Board />} exact />
+  <Route path="/" component={<Board />} exact />
 </Routes>
 </BrowserRouter>
       </div>
