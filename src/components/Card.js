@@ -12,10 +12,14 @@ class Card extends Component {
 
 
   startEditing = () =>
+
     this.setState({
+      
       editing: true,
       text: this.props.card.text
+      
     });
+
 
   endEditing = () => this.setState({ editing: false });
 
@@ -23,15 +27,17 @@ class Card extends Component {
     const { card, dispatch } = this.props;
 
     this.endEditing();
-
+console.log(card, text);
     dispatch({
       type: "CHANGE_CARD_TEXT",
-      payload: { cardId: card._id, cardText: text }
+      payload: { cardId: card?._id, cardText: text }
+
     });
   };
 
   deleteCard = async () => {
     const { listId, card, dispatch } = this.props;
+    console.log(listId, "listId")
       dispatch({
         type: "DELETE_CARD",
         payload: { cardId: card._id, listId }
@@ -39,10 +45,14 @@ class Card extends Component {
   };
 
   render() {
+    
     const { card, index } = this.props;
+    console.log(card, "card data")
+
+   
     const { editing } = this.state;
 
-    if (!editing) {
+    if (!editing && card) {
       return (
         <Draggable draggableId={card._id} index={index}>
           {(provided, snapshot) => (
@@ -59,7 +69,7 @@ class Card extends Component {
                     <ion-icon name="create" />
                   </div>
                 </div>
-{card.text}
+{card?.text}
             </div>
           )}
         </Draggable>
@@ -67,7 +77,7 @@ class Card extends Component {
     } else {
       return (
         <CardEditor
-          text={card.text}
+          text={card?.text}
           onSave={this.editCard}
           onDelete={this.deleteCard}
           onCancel={this.endEditing}

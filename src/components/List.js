@@ -2,7 +2,7 @@ import "../styles/List.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-//import { getCards, addCard } from "../services/taskServices";
+import { getAllCards } from "../api/cards";
 import Card from "./Card";
 import CardEditor from "./CardEditor";
 import ListEditor from "./ListEditor";
@@ -59,17 +59,17 @@ class List extends Component {
     });
   };
 
-//   async componentDidMount() {
-//     //const {cards} = this.list.cards;
+  async componentDidMount() {
+    //const {cards} = this.list.cards;
 
-// await getCards()
-//       .then((res) => {
-// console.log(res.data);
+await getAllCards()
+      .then((res) => {
+console.log(res.data);
+this.setState({cards: res.data})
 
-
-//       })
-//       .catch((error) => console.log(error));
-//   }
+      })
+      .catch((error) => console.log(error));
+  }
 
 
   
@@ -85,8 +85,9 @@ class List extends Component {
 
   render() {
     const { list, index } = this.props;
-    const { editingTitle, addingCard, title } = this.state;
 
+    const { editingTitle, addingCard, title } = this.state;
+console.log(this.state.cards, "state");
     return (
       <Draggable draggableId={list._id} index={index}>
         {(provided, snapshot) => (
@@ -116,17 +117,19 @@ class List extends Component {
               </div>
             )}
 
-            <Droppable droppableId={list._id}>
+            <Droppable droppableId={list._id} index={index}>
               {(provided, _snapshot) => (
                 <div ref={provided.innerRef} className="Lists-Cards">
-                  {list.cards &&
-                    list.cards.map((cardId, index) => (
+                  {this.state.cards &&
+                  
+                    this.state.cards.map((card, index) => (
                       <Card
-                        key={cardId}
-                        cardId={cardId}
+                        key={card._id}
+                        card={card}
                         index={index}
                         listId={list._id}
                       />
+                      
                     ))}
 
                   {provided.placeholder}

@@ -106,6 +106,7 @@ const cardsById = (state = {}, action) => {
     }
     case "CHANGE_CARD_TEXT": {
       const { cardText, cardId } = action.payload;
+      console.log(action.payload)
       return { ...state, [cardId]: { ...state[cardId], text: cardText } };
     }
     case "DELETE_CARD": {
