@@ -46,7 +46,7 @@ console.log(card, text);
 
   render() {
     
-    const { card, index } = this.props;
+    const { card, index, cardId } = this.props;
     console.log(card, "card data")
 
    
@@ -54,7 +54,7 @@ console.log(card, text);
 
     if (!editing && card) {
       return (
-        <Draggable draggableId={card._id} index={index}>
+        <Draggable draggableId={card?._id} index={index}>
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}

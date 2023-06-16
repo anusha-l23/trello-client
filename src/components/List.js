@@ -59,17 +59,17 @@ class List extends Component {
     });
   };
 
-  async componentDidMount() {
-    //const {cards} = this.list.cards;
+//   async componentDidMount() {
+//     //const {cards} = this.list.cards;
 
-await getAllCards()
-      .then((res) => {
-console.log(res.data);
-this.setState({cards: res.data})
+// await getAllCards()
+//       .then((res) => {
+// console.log(res.data);
+// this.setState({cards: res.data})
 
-      })
-      .catch((error) => console.log(error));
-  }
+//       })
+//       .catch((error) => console.log(error));
+//   }
 
 
   
@@ -120,12 +120,12 @@ console.log(this.state.cards, "state");
             <Droppable droppableId={list._id} index={index}>
               {(provided, _snapshot) => (
                 <div ref={provided.innerRef} className="Lists-Cards">
-                  {this.state.cards &&
+                  {list.cards &&
                   
-                    this.state.cards.map((card, index) => (
+                    list.cards.map((cardId, index) => (
                       <Card
-                        key={card._id}
-                        card={card}
+                        key={cardId}
+                        cardId={cardId}
                         index={index}
                         listId={list._id}
                       />
